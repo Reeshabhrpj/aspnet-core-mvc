@@ -7,16 +7,16 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
+   // using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.FileProviders;
     using Microsoft.Extensions.Hosting;
-    using Rj.BookShopee.Data;
-    using Rj.BookShopee.Helpers;
-    using Rj.BookShopee.Models;
+//  using Rj.BookShopee.Data;
+// using Rj.BookShopee.Helpers;
+using Rj.BookShopee.Models;
     using Rj.BookShopee.Repository;
-    using Rj.BookShopee.Service;
+   // using Rj.BookShopee.Service;
 
 namespace Rj.BookShopee
 {
@@ -35,11 +35,13 @@ namespace Rj.BookShopee
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+           /* 
             services.AddDbContext<BookShopeeContext>(
                 options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<BookShopeeContext>().AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<BookShopeeContext>().AddDefaultTokenProviders(); */
 
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,22 +51,15 @@ namespace Rj.BookShopee
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Use(async (context, next) =>
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                await context.Response.WriteAsync("Hello from my first middleware");
+                endpoints.MapDefaultControllerRoute();
             });
-
-
-
-
-
-
-
-
-
-
-
-
+        
         }
     }
 }

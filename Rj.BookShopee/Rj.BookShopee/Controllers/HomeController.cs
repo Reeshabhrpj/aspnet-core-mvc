@@ -9,9 +9,17 @@ namespace Rj.BookShopee.Controllers
 {
     public class HomeController : Controller
     {
-        public string Index()
+        public ViewResult Index()
         {
-            return "rj";
+            return View("~/Views/Home/Index.cshtml");
+        }
+        public ViewResult AboutUs()
+        {
+            return View();
+        }
+        public ViewResult ContactUs()
+        {
+            return View();
         }
     }
 }
